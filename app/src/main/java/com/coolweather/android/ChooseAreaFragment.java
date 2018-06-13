@@ -2,6 +2,7 @@ package com.coolweather.android;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,7 @@ public class ChooseAreaFragment extends Fragment {
     private ListView listView;
     private ArrayAdapter<String> adapter;
     private List<String> dataList=new ArrayList<>();
+    private Button loginMainButton;
 //    Table Assets
     private List<Province> provinceList;
     private List<City> cityList;
@@ -61,6 +63,7 @@ public class ChooseAreaFragment extends Fragment {
         titleText=(TextView) view.findViewById(R.id.title_text);
         backButton=(Button) view.findViewById(R.id.back_button);
         listView= (ListView) view.findViewById(R.id.list_view);
+        loginMainButton=(Button) view.findViewById(R.id.login_mainpage_button);
         adapter=new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,dataList);
         listView.setAdapter(adapter);
         return view;
@@ -93,6 +96,13 @@ public class ChooseAreaFragment extends Fragment {
             }
         });
         queryProvinces();
+        loginMainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void queryProvinces() {
